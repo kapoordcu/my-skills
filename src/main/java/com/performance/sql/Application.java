@@ -1,36 +1,16 @@
 package com.performance.sql;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
-import org.springframework.boot.SpringApplication;
+import com.performance.sql.service.TwitterProducerService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Properties;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 
 @SpringBootApplication
 public class Application {
+
     public static void main(String[] args) {
-        String bootstrapServers = "127.0.0.1:9092";
-
-        // KAFKA producer properties
-        Properties props = new Properties();
-        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
-        // Create the  producer
-        KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
-
-        // Producer record
-        ProducerRecord<String, String> record = new ProducerRecord<String, String>("first_topic", "value kafka");
-        // Send data - async
-        producer.send(record);
-        //flush and close
-        producer.flush();
-        producer.close();
-        //SpringApplication.run(Application.class, args);
+        AbstractApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        context.getBean(TwitterProducerService.class).produce();
     }
 }
 
