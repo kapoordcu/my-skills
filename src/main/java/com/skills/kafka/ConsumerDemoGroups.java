@@ -1,4 +1,4 @@
-package com.performance.sql;
+package com.skills.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

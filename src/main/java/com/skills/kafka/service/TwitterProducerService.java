@@ -1,8 +1,6 @@
-package com.performance.sql.service;
+package com.skills.kafka.service;
 
 import com.google.common.collect.Lists;
-import com.performance.sql.ApplicationCallBack;
-import com.performance.sql.config.TwitterConfig;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -13,11 +11,9 @@ import com.twitter.hbc.core.processor.StringDelimitedProcessor;
 import com.twitter.hbc.httpclient.auth.Authentication;
 import com.twitter.hbc.httpclient.auth.OAuth1;
 import org.apache.kafka.clients.producer.*;
-import org.apache.kafka.common.protocol.types.Field;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,13 +24,11 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class TwitterProducerService {
-    private TwitterConfig config;
     private static final Logger logger = LoggerFactory.getLogger(TwitterProducerService.class);
-
-    @Autowired
-    public TwitterProducerService(TwitterConfig config) {
-        this.config = config;
-    }
+    private static final String consumerKey = "z0JwCuWLcUYkhhuBN3Mcpy4Pl";
+    private static final String consumerSecret = "SmNIWRu2k9RRQp0YXuHYhqbqIxlZD6t6Dh2EcdYPx8NXSq4lbb";
+    private static final String token = "793839253113274368-Hrb1a03na34NvoxZ5p3H6sVFdKJqXFL";
+    private static final String secret = "f446e0vReLQVvG2oD3YaEELKyyuMJvg0oIOQwSg7tNuEz";
 
     public void produce() {
 /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
@@ -45,8 +39,8 @@ public class TwitterProducerService {
         StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
         hosebirdEndpoint.trackTerms(terms);
 
-        Authentication hosebirdAuth = new OAuth1(config.getConsumerKey(), config.getConsumerSecret(),
-                config.getToken(), config.getSecret());
+        Authentication hosebirdAuth = new OAuth1(consumerKey, consumerSecret,
+                token, secret);
         Client hosebirdClient = createClient(hosebirdHosts, hosebirdEndpoint, hosebirdAuth, msgQueue);
         hosebirdClient.connect();
         KafkaProducer<String, String> producer = createKafkaProducer();
