@@ -1,4 +1,4 @@
-package com.skills.kafka.service;
+package com.delete.service;
 
 import com.google.common.collect.Lists;
 import com.twitter.hbc.ClientBuilder;

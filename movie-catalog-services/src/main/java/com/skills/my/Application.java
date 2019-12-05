@@ -1,4 +1,4 @@
-package com.skills;
+package com.skills.my;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.skills.kafka;
+package com.delete;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;

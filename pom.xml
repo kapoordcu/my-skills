@@ -18,6 +18,7 @@
     <modules>
         <module>movie-info-service</module>
         <module>ratings-data-service</module>
+        <module>movie-catalog-services</module>
     </modules>
 
     <properties>

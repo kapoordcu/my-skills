@@ -1,14 +1,24 @@
-package com.skills.model;
+package com.skills.my.model;
 
 public class CatalogItem {
+    private String uuid;
     private String movieName;
-    private String description;
+    private String desc;
     private int rating;
 
-    public CatalogItem(String movieName, String description, int rating) {
+    public CatalogItem(String uuid, String movieName, String desc, int rating) {
+        this.uuid = uuid;
         this.movieName = movieName;
-        this.description = description;
+        this.desc = desc;
         this.rating = rating;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getMovieName() {
@@ -19,12 +29,12 @@ public class CatalogItem {
         this.movieName = movieName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public int getRating() {

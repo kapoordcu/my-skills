@@ -1,4 +1,4 @@
-package com.skills.kafka;
+package com.delete;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
