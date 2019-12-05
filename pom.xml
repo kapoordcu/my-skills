@@ -19,6 +19,7 @@
         <module>movie-info-service</module>
         <module>ratings-data-service</module>
         <module>movie-catalog-services</module>
+        <module>movie-catalog-common</module>
     </modules>
 
     <properties>

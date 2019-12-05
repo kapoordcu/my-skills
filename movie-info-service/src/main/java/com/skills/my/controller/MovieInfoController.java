@@ -1,7 +1,7 @@
 package com.skills.my.controller;
 
 import com.skills.my.api.MovieInfoRestPath;
-import com.skills.my.model.MovieInfo;
+import model.MovieInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,7 @@ public class MovieInfoController {
 
     @GetMapping
     @RequestMapping("/{movieId}")
-    public List<MovieInfo> getCatalog(@PathVariable("movieId") String movieId) {
+    public List<MovieInfo> getMovieInfo(@PathVariable("movieId") String movieId) {
         return Collections.singletonList(new MovieInfo(movieId,
                 "Hellboy"));
     }

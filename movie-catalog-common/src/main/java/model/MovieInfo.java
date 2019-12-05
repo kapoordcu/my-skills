@@ -1,8 +1,10 @@
-package com.skills.my.model;
+package model;
 
 public class MovieInfo {
     private String movieId;
     private String movieName;
+
+    public MovieInfo() {}
 
     public MovieInfo(String movieId, String movieName) {
         this.movieId = movieId;

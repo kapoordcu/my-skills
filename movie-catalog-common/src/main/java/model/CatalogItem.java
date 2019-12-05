@@ -1,10 +1,12 @@
-package com.skills.my.model;
+package model;
 
 public class CatalogItem {
     private String uuid;
     private String movieName;
     private String desc;
     private int rating;
+
+    public CatalogItem() {}
 
     public CatalogItem(String uuid, String movieName, String desc, int rating) {
         this.uuid = uuid;
