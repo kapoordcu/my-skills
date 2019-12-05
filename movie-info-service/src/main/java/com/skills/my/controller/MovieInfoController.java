@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collections;
-import java.util.List;
-
 @RestController
 @RequestMapping(MovieInfoRestPath.BASE_PATH)
 public class MovieInfoController {
 
-    @GetMapping
-    @RequestMapping("/{movieId}")
-    public List<MovieInfo> getMovieInfo(@PathVariable("movieId") String movieId) {
-        return Collections.singletonList(new MovieInfo(movieId,
-                "Hellboy"));
+    @GetMapping(value = "/{movieId}")
+    public MovieInfo getMovieInfo(@PathVariable("movieId") String movieId) {
+        return new MovieInfo(movieId, "Hellboy");
     }
 }
