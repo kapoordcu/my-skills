@@ -33,7 +33,7 @@ public class TwitterProducerService {
     public void produce() {
 /** Set up your blocking queues: Be sure to size these properly based on expected TPS of your stream */
         BlockingQueue<String> msgQueue = new LinkedBlockingQueue<String>(1000);
-        List<String> terms = Lists.newArrayList("twitter", "api");
+        List<String> terms = Lists.newArrayList("twitter", "api", "modi", "trump", "tipico");
 
         Hosts hosebirdHosts = new HttpHosts(Constants.STREAM_HOST);
         StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
@@ -56,6 +56,18 @@ public class TwitterProducerService {
         props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+        // Idempotnet Producer
+        props.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+        props.setProperty(ProducerConfig.ACKS_CONFIG, "all");
+        props.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE));
+        props.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
+
+
+        // High Throughput Performance (at the expense of latency and cpu usage)
+        props.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG, "snappy");
+        props.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20");
+        props.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024));
 
         // Create the  producer
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);

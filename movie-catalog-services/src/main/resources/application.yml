@@ -1,9 +1,2 @@
 server:
   port: 50580
-
-twitter:
-  api:
-    consumerKey: z0JwCuWLcUYkhhuBN3Mcpy4Pl
-    consumerSecret: SmNIWRu2k9RRQp0YXuHYhqbqIxlZD6t6Dh2EcdYPx8NXSq4lbb
-    token: 793839253113274368-Hrb1a03na34NvoxZ5p3H6sVFdKJqXFL
-    secret: f446e0vReLQVvG2oD3YaEELKyyuMJvg0oIOQwSg7tNuEz
